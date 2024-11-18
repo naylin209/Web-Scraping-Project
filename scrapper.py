@@ -35,48 +35,82 @@ def scroll_to_load(driver):
         last_height = new_height
         print("Scrolling...")
 
+def load_more(driver):
+    try:
+        accept_button = driver.find_element(By.ID, "consent-accept")
+        accept_button.click()
+        print('Cookies button clicked successfully')
+    except Exception as e:
+        print("Consent button not found or already accepted:", e)
+        
+    for i in range(7):
+        try:
+            load_more_button = driver.find_element(By.CLASS_NAME, "see-more")
+            driver.execute_script("arguments[0].scrollIntoView(true);", load_more_button)
+            time.sleep(1)
+            
+            load_more_button.click()
+            print(f"'Load More' clicked {i + 1} times")
+            
+            time.sleep(3)
+                
+        except Exception as e:
+            print(f"Error clicking 'Load More' button on iteration {i + 1}: {e}")
+            break
+    print("Finshed Clicking 'Load More'")
+   
 # Extract the data from the page
 def extract_data(driver):
-    soup = BeautifulSoup(driver.page_source, "html.parser")
-    employee_blocks = soup.find_all("div", class_="pb-2")
-
-    print(f"Number of employee blocks found: {len(employee_blocks)}")
-
-    name_data = []
-    title_data = []
-    email_data = []
-
-    # Loop through the employee blocks and extract relevant information
-    for i in range(0, len(employee_blocks), 4):
+    LOAD_MORE_BUTTON_SELECTOR = ".see-more"  # Button to load more content
+    ARTICLE_SELECTOR = ".views-row article.card.person-directory"  # Selector for each person's card
+    NAME_SELECTOR = ".person--info a"  # Selector for name
+    TITLE_SELECTOR = ".person--info .directory-text-small"  # Selector for title
+    EMAIL_SELECTOR = ".person--extra-text a"  # Selector for email
+    # Parse the page source with BeautifulSoup
+    
+    instructors = []
+    time.sleep(3)  # Ensure all dynamically loaded content is fully rendered
+    articles = driver.find_elements(By.CSS_SELECTOR, ARTICLE_SELECTOR)
+    print(f"Total articles found: {len(articles)}")
+ 
+    for article in articles:
         try:
-            name_div = employee_blocks[i].find("a")
-            title_div = employee_blocks[i + 1]
-            email_div = employee_blocks[i + 3].find("a", href=True)
-
-            if name_div and title_div and email_div:
-                name = name_div.text.strip()
-                title = title_div.text.strip() if title_div else "No Title"
-                email = email_div.text.strip() if email_div else "No Email"
-
-                name_data.append(name)
-                title_data.append(title)
-                email_data.append(email)
-            else:
-                print(f"Skipping incomplete block at index {i}")
-        except IndexError:
-            print(f"Error processing block {i}")
-
-    return name_data, title_data, email_data
+            # Extract name
+            name = article.find_element(By.CSS_SELECTOR, NAME_SELECTOR).text.strip()
+ 
+            # Extract title (set to "null" if missing)
+            try:
+                position_elements = article.find_elements(By.CSS_SELECTOR, TITLE_SELECTOR)
+                if len(position_elements) > 0:
+                    position = position_elements[0].text.strip()  # Pick the first `.directory-text-small`
+                else:
+                    position = "null"
+            except Exception:
+                position = "null"
+ 
+            # Extract email
+            try:
+                email_element = article.find_element(By.CSS_SELECTOR, EMAIL_SELECTOR)
+                email = email_element.get_attribute("href").replace("mailto:", "").strip()
+            except Exception:
+                email = "N/A"
+ 
+            # Append the extracted data
+            instructors.append({
+                "Name": name,
+                "Position": position,
+                "Email": email
+            })
+        except Exception as e:
+            print(f"Error scraping an article: {e}")
+ 
+    return instructors
 
 # Save the data to a CSV file
-def load_data(name_data, title_data, email_data):
-    df = pd.DataFrame({
-        "Name": name_data,
-        "Title": title_data,
-        "Email": email_data
-    })
+def load_data(instructors):
+    df = pd.DataFrame(instructors)
     try:
-        df.to_csv("First_Directory.csv", index=False)
+        df.to_csv("directory.csv", index=False)
         print("File saved successfully!")
     except Exception as e:
         print(f"Error: {e}")
@@ -85,11 +119,14 @@ def main():
     driver = load_webpage()
 
     # Scroll to load more content
-    scroll_to_load(driver)  # Scroll until all content is loaded
+ 
+    #scroll_to_load(driver)  # Scroll until all content is loaded
+    load_more(driver)
 
     # Extract the data after content is fully loaded
-    name_data, title_data, email_data = extract_data(driver)
-    load_data(name_data, title_data, email_data)  # Save data to a CSV file
+    data = extract_data(driver)
+    load_data(data)  # Save data to a CSV file
+    driver.quit()
 
 if __name__ == "__main__":
     main()
