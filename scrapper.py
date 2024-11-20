@@ -42,7 +42,7 @@ def load_more(driver):
         print('Cookies button clicked successfully')
     except Exception as e:
         print("Consent button not found or already accepted:", e)
-        
+    #Clicking 'load more' 5 times
     for i in range(5):
         try:
             load_more_button = driver.find_element(By.CLASS_NAME, "see-more")
@@ -84,9 +84,9 @@ def extract_data(driver):
                 if len(position_elements) > 0:
                     position = position_elements[0].text.strip()  # Pick the first `.directory-text-small`
                 else:
-                    position = "null"
+                    position = " "
             except Exception:
-                position = "null"
+                position = " "
  
             # Extract email
             try:
