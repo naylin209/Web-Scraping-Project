@@ -43,7 +43,7 @@ def load_more(driver):
     except Exception as e:
         print("Consent button not found or already accepted:", e)
         
-    for i in range(7):
+    for i in range(5):
         try:
             load_more_button = driver.find_element(By.CLASS_NAME, "see-more")
             driver.execute_script("arguments[0].scrollIntoView(true);", load_more_button)
