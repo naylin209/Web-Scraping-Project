@@ -1,3 +1,5 @@
+""" NSSA 220 Final Group: Nay Lin Aung & Ayesha Khan"""
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -80,13 +82,13 @@ def extract_data(driver):
  
             # Extract title (set to "null" if missing)
             try:
-                position_elements = article.find_elements(By.CSS_SELECTOR, TITLE_SELECTOR)
-                if len(position_elements) > 0:
-                    position = position_elements[0].text.strip()  # Pick the first `.directory-text-small`
+                title_elements = article.find_elements(By.CSS_SELECTOR, TITLE_SELECTOR)
+                if len(title_elements) > 0:
+                    title = title_elements[0].text.strip()  # Pick the first `.directory-text-small`
                 else:
-                    position = " "
+                    title = " "
             except Exception:
-                position = " "
+                title = " "
  
             # Extract email
             try:
@@ -98,7 +100,7 @@ def extract_data(driver):
             # Append the extracted data
             instructors.append({
                 "Name": name,
-                "Position": position,
+                "Title": title,
                 "Email": email
             })
         except Exception as e:
