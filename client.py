@@ -1,5 +1,3 @@
-""" NSSA 220 Final Group: Nay Lin Aung & Ayesha Khan"""
-
 import socket
 import xml.etree.ElementTree as ET
 import sys
@@ -86,7 +84,7 @@ if __name__ == "__main__":
     query_file = sys.argv[1]
     response_file = sys.argv[2]
     server_host = "localhost"
-    server_port = 8080
+    server_port = 5000
     
     # Read the query, send it to the server, and handle the response
     query = read_query(query_file)
