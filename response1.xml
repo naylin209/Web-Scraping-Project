@@ -1,10 +1,1 @@
-<result>
-    <status>success</status>
-    <data>
-        <row>
-            <name>Fahed Jubair</name>
-            <title>Adjunct Assistant Professor</title>
-            <email>fxjcad@rit.edu</email>
-        </row>
-    </data>
-</result>
+<result><status>Success</status><data><row><name>Fahed Jubair</name><title>Adjunct Assistant Professor</title><email>fxjcad@rit.edu</email></row></data></result>

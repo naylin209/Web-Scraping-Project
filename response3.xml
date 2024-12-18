@@ -1,1 +1,90 @@
-<result><status>success</status><data /></result>
+<result>
+    <status>Success</status>
+    <data>
+        <row>
+            <name>Wael Abdel Samad</name>
+            <title>Department Chair, Associate Professor</title>
+            <email>wascad@rit.edu</email>
+        </row>
+        <row>
+            <name>Wasan Al Taie</name>
+            <title>Visiting Associate Professor in Chemistry</title>
+            <email>waacad@rit.edu</email>
+        </row>
+        <row>
+            <name>Sufyan Almajali</name>
+            <title>Adjunct Associate Professor</title>
+            <email>sxacad4@rit.edu</email>
+        </row>
+        <row>
+            <name>Bashar Alshboul</name>
+            <title>Adjunct Associate professor</title>
+            <email>baacad@rit.edu</email>
+        </row>
+        <row>
+            <name>Charu Banga</name>
+            <title>Associate Professor of Finance</title>
+            <email>cxbcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Rouba Borghol</name>
+            <title>Associate Professor of Mathematics</title>
+            <email>rbbcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Adrianne Calfo</name>
+            <title>Associate Professor of Creative Writing</title>
+            <email>axccad1@rit.edu</email>
+        </row>
+        <row>
+            <name>John Dayton</name>
+            <title>Associate Professor of English</title>
+            <email>jcdcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Ayman Ibrahim</name>
+            <title>Associate Professor in Data Analytics</title>
+            <email>axicad1@rit.edu</email>
+        </row>
+        <row>
+            <name>Panagiotis Kokkalis</name>
+            <title>Chair of Business Department , Associate Professor of Business and Management</title>
+            <email>pxkcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Jameel Maki</name>
+            <title>Associate Professor of Mathematics</title>
+            <email>jamcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Sanjay Modak</name>
+            <title>Chair - Graduate Programs and Research Department, Associate Professor of Economics</title>
+            <email>ssmcada@rit.edu</email>
+        </row>
+        <row>
+            <name>Carlos Montana-Hoyos</name>
+            <title>Associate Professor of New Media Design</title>
+            <email>crmcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Jinane Mounsef</name>
+            <title>Associate Professor of Electrical Engineering</title>
+            <email>jmbcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Hassan Mustafa</name>
+            <title>Associate Professor of Digital Marketing</title>
+            <email>hmmcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Salman Pervaiz</name>
+            <title>Associate Professor of Mechanical Engineering</title>
+            <email>sxpcad@rit.edu</email>
+        </row>
+        <row>
+            <name>Heba Saadeh</name>
+            <title>Adjunct Associate professor</title>
+            <email>hkscad1@rit.edu</email>
+        </row>
+    </data>
+</result>
